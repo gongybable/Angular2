@@ -1,20 +1,15 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/common';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { LoginInfo } from './loginInfo';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @Component({
   selector: 'my-app',
-  template: 'app/app.component.html'
+  templateUrl: 'app/app.component.html',
+  directives: [ROUTER_DIRECTIVES],
+  precompile: [LoginComponent, RegisterComponent, MainPageComponent]
 })
 
-export class AppComponent {
-    loginInfo: LoginInfo = {
-        emailAddress: '',
-        password: ''
-    };
-
-    logIn() {
-        console.log("Login button clicked with login infomation:" + JSON.stringify(this.loginInfo));
-    }
-}
+export class AppComponent { }
