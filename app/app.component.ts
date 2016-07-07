@@ -6,10 +6,10 @@ import { RegisterComponent } from './register/register.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: 'app/app.component.html',
-  directives: [ROUTER_DIRECTIVES],
-  precompile: [LoginComponent, RegisterComponent, MainPageComponent]
+    selector: 'my-app',
+    templateUrl: 'app/app.component.html',
+    directives: [ROUTER_DIRECTIVES],
+    precompile: [LoginComponent, RegisterComponent, MainPageComponent]
 })
 
 export class AppComponent { }

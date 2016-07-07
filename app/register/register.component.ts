@@ -4,8 +4,8 @@ import { NgForm } from '@angular/common';
 import { RegisterInfo } from './registerInfo';
 
 @Component({
-  selector: 'my-register',
-  templateUrl: 'app/register/register.component.html'
+    selector: 'my-register',
+    templateUrl: 'app/register/register.component.html'
 })
 
 export class RegisterComponent {
