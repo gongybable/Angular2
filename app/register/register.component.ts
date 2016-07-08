@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { RegisterInfo } from './registerInfo';
 
 @Component({
     selector: 'my-register',
-    templateUrl: 'app/register/register.component.html'
+    templateUrl: 'app/register/register.component.html',
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class RegisterComponent {
