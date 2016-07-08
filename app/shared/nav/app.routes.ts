@@ -1,10 +1,10 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { AuthedGuard } from './shared/authed.guard';
-import { AuthService } from './shared/auth.service';
-import { LoginComponent } from './login/login.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { RegisterComponent } from './register/register.component';
+import { AuthedGuard } from './authed.guard';
+import { AuthService } from './auth.service';
+import { LoginComponent } from '../../login/login.component';
+import { MainPageComponent } from '../../main-page/main-page.component';
+import { RegisterComponent } from '../../register/register.component';
 
 export const routes: RouterConfig = [
     { path: 'login', component: LoginComponent },

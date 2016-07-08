@@ -2,7 +2,7 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
-import { CONSTANTS } from './constant';
+import { CONSTANTS } from '../constant';
 
 @Injectable()
 export class AuthService {
@@ -12,14 +12,11 @@ export class AuthService {
 
     isLoggedIn(): Observable<boolean> {
     	return this.http.get(this.authUrl)
-                   .map(this.extractData);
-                   // .catch(this.handleError);
-    }
-
-    private extractData(res: any) {
-        let body = res.json().data || { };
-        if (body.userID) { return true; }
-        return false;
+                    .map(res => {
+                        let body = res.json().data || {}; 
+                        if (body.userID) { return true; }
+                        return false;
+                    }).catch(this.handleError);
     }
 
     private handleError(error: any) {
