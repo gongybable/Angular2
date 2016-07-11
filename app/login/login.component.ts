@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { LoginInfo } from './loginInfo';
+import { LoginInfo } from './login-info';
 import { CONSTANTS } from '../shared/constant';
 
 @Component({

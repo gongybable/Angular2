@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { RegisterInfo } from './registerInfo';
+import { RegisterInfo } from './register-info';
 
 @Component({
     selector: 'my-register',
