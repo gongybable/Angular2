@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 
-import { LoginInfo } from './loginInfo';
+import { LoginInfo } from './login-info';
 
 @Component({
   selector: 'my-app',
