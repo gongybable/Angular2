@@ -11,9 +11,9 @@ export class AuthService {
     private authUrl = CONSTANTS.baseApiUrl;
 
     isLoggedIn(): Observable<boolean> {
-    	return this.http.get(this.authUrl)
+    	return this.http.get(this.authUrl, { withCredentials: true })
                     .map(res => {
-                        let body = res.json().data || {}; 
+                        let body = res.json().data || {};
                         if (body.userID) { return true; }
                         return false;
                     }).catch(this.handleError);
