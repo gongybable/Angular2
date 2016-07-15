@@ -1,32 +1,13 @@
+interface HttpOptions {
+	withCredentials: boolean;
+}
+
 export const CONSTANTS: {
 	baseApiUrl: string;
+	httpOptions: HttpOptions;
 } = {
-	baseApiUrl: 'http://localhost:8000/api'
+	baseApiUrl: 'http://192.168.1.130:8000/api',
+	httpOptions: {
+		withCredentials: true
+	}
 };
-
-//Tutorial 4
-// import { Headers } from '@angular/http';
-
-// interface HttpOptions {
-// 	headers?: Headers;
-// 	withCredentials: boolean;
-// }
-
-// let httpHeaders = new Headers({
-//   'content-type': 'application/json'
-// });
-
-// export const CONSTANTS: {
-// 	baseApiUrl: string;
-// 	httpOptionsWithHeader: HttpOptions;
-// 	httpOptionsWithoutHeader: HttpOptions;
-// } = {
-// 	baseApiUrl: 'http://localhost:8000/api',
-// 	httpOptionsWithHeader: {
-// 		headers: httpHeaders,
-// 		withCredentials: true
-// 	},
-// 	httpOptionsWithoutHeader: {
-// 		withCredentials: true
-// 	}
-// };

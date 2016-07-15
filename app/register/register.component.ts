@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { RegisterInfo } from './register-info';
+import { AuthInfo } from '../shared/auth-info';
 
 @Component({
     selector: 'my-register',
@@ -11,12 +11,8 @@ import { RegisterInfo } from './register-info';
 })
 
 export class RegisterComponent {
-    registerInfo: RegisterInfo = {
-        emailAddress: '',
-        userName: '',
-        password: ''
-    };
-
+    registerInfo = new AuthInfo('', '', '');
+    
     register() {
         console.log("Register button clicked with register infomation:" + JSON.stringify(this.registerInfo));
     }

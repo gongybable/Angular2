@@ -1,13 +1,3 @@
-// Initial test
-// import { CanActivate }    from '@angular/router';
-
-// export class AuthedGuard implements CanActivate {
-//   canActivate() {
-//     console.log('canActivate called');
-//     return true;
-//   }
-// }
-
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
