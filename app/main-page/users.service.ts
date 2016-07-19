@@ -12,12 +12,20 @@ export class UsersService {
 
     private baseUrl: string = CONSTANTS.baseApiUrl;
     private usersUrl: string = this.baseUrl + '/users';
+    private logOutUrl: string = this.baseUrl + '/auth/logout';
 
     getUsers(): Observable<UserInfo[]> {
-    	return this.http.get(this.usersUrl, CONSTANTS.httpOptions)
+        return this.http.get(this.usersUrl, CONSTANTS.httpOptions)
                 .map(res => {
                     return res.json().data || [];
                 }).catch(this.handleError);
+    }
+
+    logOut(): Observable<{}> {
+        return this.http.post(this.logOutUrl, {}, CONSTANTS.httpOptions)
+            .map(res => {
+                return res.json().data;
+            }).catch(this.handleError);
     }
 
     private handleError(error: any) {

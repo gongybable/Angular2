@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserInfo } from '../shared/user-info';
 import { UsersService } from './users.service';
@@ -12,14 +13,29 @@ import { UsersService } from './users.service';
 export class MainPageComponent implements OnInit {
     users: UserInfo[] = [];
 
-    constructor(private usersService: UsersService) { }
+    constructor(
+        private usersService: UsersService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
         this.usersService.getUsers()
             .subscribe(
                 data => {
-                    console.log(data['users']);
                     this.users = data['users'];
                 });
+    }
+
+    logOut() {
+        this.usersService.logOut().subscribe(
+            data => {
+                if (data.logout) {
+                    this.router.navigate(['/login']);
+                }
+            },
+            error => {
+                this.router.navigate(['/error']);
+            }
+        )
     }
 }

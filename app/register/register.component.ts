@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 
 import { AuthInfo } from '../shared/auth-info';
 import { AuthService } from '../shared/nav/auth.service';
-import { CONSTANTS } from '../shared/constant';
 
 @Component({
     selector: 'my-register',
