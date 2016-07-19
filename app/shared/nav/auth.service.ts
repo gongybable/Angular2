@@ -13,9 +13,8 @@ export class AuthService {
     isLoggedIn(): Observable<boolean> {
     	return this.http.get(this.authUrl, { withCredentials: true })
                     .map(res => {
-                        let body = res.json().data || {};
-                        if (body.userID) { return true; }
-                        return false;
+                        let body = res.json().data;
+                        return body.authenticated;
                     }).catch(this.handleError);
     }
 
