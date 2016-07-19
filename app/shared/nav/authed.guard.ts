@@ -17,7 +17,7 @@ export class AuthedGuard implements CanActivate {
                         return false;
                     }).catch(error => {
                         console.log('error catched');
-                        this.router.navigate(['/login']);
+                        this.router.navigate(['/error']);
                         return Observable.of(false);
                     });
     }
@@ -35,8 +35,23 @@ export class UnAuthedGuard implements CanActivate {
                         return false;
                     }).catch(error => {
                         console.log('error catched');
-                        this.router.navigate(['/login']);
+                        this.router.navigate(['/error']);
                         return Observable.of(false);
+                    });
+    }
+}
+
+@Injectable()
+export class ApiGuard implements CanActivate {
+    constructor(private authService: AuthService, public router: Router) {}
+
+    canActivate() {
+        return this.authService.isLoggedIn()
+                    .map(res => {
+                        this.router.navigate(['/login']);
+                        return false;
+                    }).catch(error => {
+                        return Observable.of(true);
                     });
     }
 }

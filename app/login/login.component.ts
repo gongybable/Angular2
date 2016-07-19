@@ -21,13 +21,18 @@ export class LoginComponent {
         private router: Router
     ) { }
 
-    loginInfo = new AuthInfo('', '');
+    loginInfo: AuthInfo = new AuthInfo('', '');
 
     logIn() {
-        this.authService.logIn(this.loginInfo).subscribe(data => {
-            if (data.userName) {
-                this.router.navigate(['/mainpage']);
+        this.authService.logIn(this.loginInfo).subscribe(
+            data => {
+                if (data.userName) {
+                    this.router.navigate(['/mainpage']);
+                }
+            },
+            error => {
+                this.router.navigate(['/error']);
             }
-        })
+        )
     }
 }

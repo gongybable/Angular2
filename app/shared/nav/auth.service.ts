@@ -2,8 +2,10 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
-import { CONSTANTS } from '../constant';
+
 import { AuthInfo } from '../auth-info';
+import { CONSTANTS } from '../constant';
+import { UserInfo } from '../user-info';
 
 @Injectable()
 export class AuthService {
@@ -16,20 +18,23 @@ export class AuthService {
     isLoggedIn(): Observable<boolean> {
     	return this.http.get(this.baseUrl, CONSTANTS.httpOptions)
                 .map(res => {
-                    let body = res.json().data || {};
-                    if (body.userID) { return true; }
-                    return false;
+                    let body = res.json().data;
+                    return body.authenticated;
                 }).catch(this.handleError);
     }
 
-    logIn(data: AuthInfo): Observable<any> {
+    logIn(data: AuthInfo): Observable<UserInfo> {
         return this.post(this.loginUrl, data);
+    }
+
+    register(data: AuthInfo): Observable<UserInfo> {
+        return this.post(this.registerUrl, data);
     }
 
     private post(url: string, data: AuthInfo) {
         return this.http.post(url, data, CONSTANTS.httpOptions)
                 .map(res => {
-                    return res.json().data || {};
+                    return res.json().data;
                 }).catch(this.handleError);
     }
 

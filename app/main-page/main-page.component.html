@@ -1,1 +1,7 @@
-<h2> This is the Main Page</h2>
+<div>
+    <div *ngFor="let user of users" class="col-1-4">
+        <div>
+            <h4>{{user.userName}}</h4>
+        </div>
+    </div>
+</div>

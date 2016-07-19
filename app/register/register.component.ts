@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthInfo } from '../shared/auth-info';
+import { AuthService } from '../shared/nav/auth.service';
+import { CONSTANTS } from '../shared/constant';
 
 @Component({
     selector: 'my-register',
@@ -11,9 +14,25 @@ import { AuthInfo } from '../shared/auth-info';
 })
 
 export class RegisterComponent {
-    registerInfo = new AuthInfo('', '', '');
-    
+    mode = 'Observable';
+
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) { }
+
+    registerInfo: AuthInfo = new AuthInfo('', '', '');
+
     register() {
-        console.log("Register button clicked with register infomation:" + JSON.stringify(this.registerInfo));
+        this.authService.register(this.registerInfo).subscribe(
+            data => {
+                if (data.userName) {
+                    this.router.navigate(['/mainpage']);
+                }
+            },
+            error => {
+                this.router.navigate(['/error']);
+            }
+        )
     }
 }
