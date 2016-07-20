@@ -8,4 +8,4 @@ bootstrap(AppComponent, [
     disableDeprecatedForms(),
     provideForms(),
     APP_ROUTER_PROVIDERS
-]);
+]).catch((err: any) => console.error(err));
