@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Router } from '@angular/router';
 
