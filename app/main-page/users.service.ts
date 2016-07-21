@@ -21,10 +21,10 @@ export class UsersService {
                 }).catch(this.handleError);
     }
 
-    logOut(): Observable<{}> {
+    logOut(): Observable<boolean> {
         return this.http.post(this.logOutUrl, {}, CONSTANTS.httpOptions)
             .map(res => {
-                return res.json().data;
+                return res.json().data.logout;
             }).catch(this.handleError);
     }
 

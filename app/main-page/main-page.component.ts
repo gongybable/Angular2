@@ -29,7 +29,7 @@ export class MainPageComponent implements OnInit {
     logOut() {
         this.usersService.logOut().subscribe(
             data => {
-                if (data.logout) {
+                if (data) {
                     this.router.navigate(['/login']);
                 }
             },
