@@ -5,6 +5,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { AuthInfo } from '../shared/auth-info';
 import { AuthService } from '../shared/nav/auth.service';
 import { CONSTANTS } from '../shared/constant';
+import { Utils } from '../shared/utils.service';
 
 @Component({
     selector: 'my-register',
@@ -21,7 +22,8 @@ export class RegisterComponent {
 
     constructor(
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private utils: Utils
     ) { }
 
     register() {
@@ -29,7 +31,7 @@ export class RegisterComponent {
         this.registerInfo.userName = this.registerInfo.userName.trim();
         this.registerInfo.password = this.registerInfo.password.trim();
 
-        if (this.registerInfo.emailAddress === '' || !this.stringCheck(CONSTANTS.emailRegExp, this.registerInfo.emailAddress)) {
+        if (this.registerInfo.emailAddress === '' || !this.utils.stringCheck(CONSTANTS.emailRegExp, this.registerInfo.emailAddress)) {
             this.registerError = 'Email Address is missing or not valid';
             return;
         }
@@ -39,7 +41,7 @@ export class RegisterComponent {
             return;
         }
 
-        if (this.registerInfo.password === '' || !this.stringCheck(CONSTANTS.passwordRegExp, this.registerInfo.password)) {
+        if (this.registerInfo.password === '' || !this.utils.stringCheck(CONSTANTS.passwordRegExp, this.registerInfo.password)) {
             this.registerError = 'Password is missing or not valid';
             return;
         }
@@ -48,31 +50,28 @@ export class RegisterComponent {
 
         this.authService.register(this.registerInfo).subscribe(
             data => {
-                if (data.userName) {
-                    this.submitting = false;
-                    this.router.navigate(['/mainpage']);
-                }
+                this.submitting = false;
+                this.router.navigate(['/mainpage']);
             },
             error => {
                 this.submitting = false;
-                if (error._body) {
-                    try {
+                try {
+                    if (error._body && this.utils.isJson(error._body)) {
                         let err: any = JSON.parse(error._body);
-                        if (err['error'][0].code === 'DUPLICATE_DATA') {
+                        if (err['error'] && err['error'][0] && err['error'][0].code === 'DUPLICATE_DATA') {
                             this.registerError = 'Email address is alreay used';
                             return;
+                        } else {
+                            throw err;
                         }
-                    } finally {
-                        console.log(error);
+                    } else {
+                        throw error;
                     }
+                } catch (er) {
+                    console.log(er);
+                    this.router.navigate(['/error']);
                 }
-                this.router.navigate(['/error']);
             }
         )
-    }
-
-    private stringCheck(regex: string, data: string) {
-        let reg: RegExp = new RegExp(regex);
-        return reg.test(data);
     }
 }
