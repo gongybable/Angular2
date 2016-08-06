@@ -1,7 +1,7 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 import { HTTP_PROVIDERS } from '@angular/http';
 
-import { AuthedGuard, UnAuthedGuard, ApiGuard } from './authed.guard';
+import { AuthedGuard, UnAuthedGuard, ApiGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { ErrorPageComponent } from '../../error-page/error-page.component';
 import { LoginComponent } from '../../login/login.component';
