@@ -17,7 +17,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthedGuard implements CanActivate {
-    constructor(private authService: AuthService, public router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     canActivate() {
         return this.authService.isLoggedIn()
