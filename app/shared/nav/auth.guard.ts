@@ -35,7 +35,7 @@ export class AuthedGuard implements CanActivate {
 
 @Injectable()
 export class UnAuthedGuard implements CanActivate {
-    constructor(private authService: AuthService, public router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     canActivate() {
         return this.authService.isLoggedIn()
